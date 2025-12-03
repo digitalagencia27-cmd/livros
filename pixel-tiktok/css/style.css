@@ -11,8 +11,11 @@
     --gradient-4: linear-gradient(45deg, #4facfe, #00f2fe);
     --gradient-5: linear-gradient(45deg, #43e97b, #38f9d7);
     --gradient-special: linear-gradient(45deg, #fa709a, #fee140);
+    --gradient-helper: linear-gradient(45deg, #6a6a6a, #4a4a4a);
+    --gradient-helper-hover: linear-gradient(45deg, #7a7a7a, #5a5a5a);
     --border-radius: 12px;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --transition-speed: 0.3s;
 }
 
 * {
@@ -30,6 +33,7 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    line-height: 1.6;
 }
 
 /* --- Layout Principal --- */
@@ -44,12 +48,14 @@ body {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     text-align: center;
+    transition: transform var(--transition-speed);
 }
 
 h1 {
     font-size: 2rem;
     margin-bottom: 10px;
     font-weight: 700;
+    color: var(--primary-color);
 }
 
 .subtitle {
@@ -69,6 +75,7 @@ h1 {
     margin-bottom: 8px;
     font-size: 0.9rem;
     color: #cccccc;
+    font-weight: 500;
 }
 
 .input-group input {
@@ -81,11 +88,97 @@ h1 {
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 1px;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
 }
 
 .input-group input:focus {
     outline: none;
     border-color: #666;
+    box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.2);
+}
+
+.input-group input:disabled {
+    background-color: #222;
+    border-color: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* --- Seção de Dados do Produto --- */
+.product-data-section {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.product-data-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+/* --- Seção de Correspondência Avançada --- */
+.advanced-matching-section {
+    background-color: #252525;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.advanced-matching-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.info-text {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-grid input,
+.form-grid select {
+    width: 100%;
+    padding: 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-grid input::placeholder {
+    color: #666;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+    outline: none;
+    border-color: #777;
+    box-shadow: 0 0 0 2px rgba(119, 119, 119, 0.2);
+}
+
+.utm-section {
+    margin-top: 20px;
+}
+
+.utm-section h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #cccccc;
 }
 
 /* --- Grid de Botões --- */
@@ -103,9 +196,27 @@ h1 {
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed);
     color: white;
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform var(--transition-speed);
+}
+
+.btn:hover::before {
+    transform: translateX(0);
 }
 
 .btn:hover {
@@ -132,10 +243,23 @@ h1 {
 .btn-secondary:nth-child(3) { background: var(--gradient-2); }
 .btn-secondary:nth-child(4) { background: var(--gradient-3); }
 .btn-secondary:nth-child(5) { background: var(--gradient-4); }
+.btn-secondary:nth-child(6) { background: var(--gradient-5); }
 
 .btn-special {
     background: var(--gradient-special);
     grid-column: 1 / -1; /* Ocupa as duas colunas */
+}
+
+.btn-helper {
+    background: var(--gradient-helper);
+    color: #fff;
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.btn-helper:hover {
+    background: var(--gradient-helper-hover);
 }
 
 /* --- Feedback Visual de Clique --- */
@@ -149,6 +273,49 @@ h1 {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+}
+
+/* --- Estilo para botões desabilitados --- */
+.btn:disabled {
+    background-color: #333;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+.btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.btn:disabled::before {
+    display: none;
+}
+
+/* --- Select Customizado --- */
+select {
+    width: 100%;
+    padding: 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f0f0f0' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #777;
+    box-shadow: 0 0 0 2px rgba(119, 119, 119, 0.2);
 }
 
 /* --- Responsividade para Mobile --- */
@@ -165,7 +332,37 @@ h1 {
         grid-template-columns: 1fr; /* Uma coluna no mobile */
     }
     
-    .btn-primary, .btn-special {
+    .btn-primary, .btn-special, .btn-helper {
         grid-column: 1;
     }
+
+    .form-grid {
+        grid-template-columns: 1fr; /* Uma coluna no mobile */
+    }
+}
+
+/* --- Animações Adicionais --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* --- Melhorias de Acessibilidade --- */
+.btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.btn-secondary {
+    background: #006b00;
 }
