@@ -3,48 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ferramenta para ativar e testar eventos do Pixel do TikTok. Valide sua configuração e garanta o rastreamento correto de conversões.">
-    <title>Ativar Pixel do TikTok | Ferramenta de Teste</title>
+    <meta name="description" content="Ferramenta completa para ativar e testar eventos do Pixel do TikTok com Correspondência Avançada e Parâmetros de Produto.">
+    <title>Ativar Pixel do TikTok | Ferramenta de Teste Completa</title>
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡️</text></svg>">
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- TikTok Pixel Code Start -->
-    <script>
-    !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-      ttq.load('D4O2CQRC77UEBGID6LHG');
-      ttq.page();
-    }(window, document, 'ttq');
-    </script>
-    <!-- TikTok Pixel Code End -->
 </head>
 <body>
 
     <main class="container">
         <div class="card">
             <h1>Ativar Pixel do TikTok</h1>
-            <p class="subtitle">Teste e valide o rastreamento de eventos em tempo real.</p>
+            <p class="subtitle">Teste eventos com todos os parâmetros necessários para otimização de anúncios.</p>
             
             <div class="input-group">
-                <label for="pixel-id">Seu Pixel ID</label>
-                <input type="text" id="pixel-id" value="D4O2CQRC77UEBGID6LHG" readonly>
+                <label for="pixel-id-input">Seu Pixel ID (Editável)</label>
+                <input type="text" id="pixel-id-input" placeholder="Cole o ID do seu pixel aqui" value="D4O2CQRC77UEBGID6LHG">
+            </div>
+
+            <!-- NOVA SEÇÃO: DADOS DO PRODUTO -->
+            <div class="product-data-section">
+                <h2>Dados do Produto (Para Content ID)</h2>
+                <p class="info-text">Esses dados são essenciais para anúncios de catálogo e e-commerce.</p>
+                
+                <button class="btn btn-helper" id="btn-fill-product-random">🎲 Gerar Produto Aleatório</button>
+                
+                <div class="form-grid">
+                    <input type="text" id="content-id" placeholder="Content ID (SKU do produto)">
+                    <input type="text" id="content-name" placeholder="Nome do Produto">
+                    <input type="text" id="content-category" placeholder="Categoria">
+                    <input type="number" id="content-price" placeholder="Preço (R$)" step="0.01" min="0">
+                    <input type="number" id="content-quantity" placeholder="Quantidade" min="1" value="1">
+                    <select id="content-type">
+                        <option value="product">Produto</option>
+                        <option value="product_group">Grupo de Produtos</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Seção de Dados de Correspondência Avançada -->
+            <div class="advanced-matching-section">
+                <h2>Dados de Correspondência Avançada (Opcional)</h2>
+                <p class="info-text">Preencha os dados ou use o botão para gerar informações de teste aleatórias.</p>
+                
+                <button class="btn btn-helper" id="btn-fill-random">🎲 Preencher com Dados Aleatórios</button>
+                
+                <div class="form-grid">
+                    <input type="email" id="email" placeholder="Email">
+                    <input type="tel" id="phone" placeholder="Telefone (ex: +55119XXXXXXXX)">
+                    <input type="text" id="name" placeholder="Nome Completo">
+                    <input type="text" id="address" placeholder="Endereço">
+                    <input type="text" id="external-id" placeholder="ID Externo (seu ID de usuário)">
+                </div>
+
+                <div class="form-grid">
+                    <input type="text" id="utm-source" placeholder="UTM Source">
+                    <input type="text" id="utm-medium" placeholder="UTM Medium">
+                    <input type="text" id="utm-campaign" placeholder="UTM Campaign">
+                </div>
             </div>
 
             <div class="buttons-grid">
-                <!-- O atributo data-event é crucial para o JavaScript -->
-                <button class="btn btn-primary" data-event="ActivatePixel">Ativar Pixel</button>
-                <button class="btn btn-secondary" data-event="AddToCart">Add To Cart</button>
-                <button class="btn btn-secondary" data-event="InitiateCheckout">Initiate Checkout</button>
-                <button class="btn btn-secondary" data-event="AddPaymentInfo">Add Payment Info</button>
-                <button class="btn btn-secondary" data-event="CompletePayment">Complete Payment</button>
-                <button class="btn btn-special" id="btn-send-all">Enviar Todos Eventos Padrões</button>
+                <!-- Botão principal para ATIVAR o pixel -->
+                <button class="btn btn-primary" id="btn-activate-pixel">🚀 Ativar Pixel</button>
+                
+                <!-- Botões de evento (inicialmente desabilitados) -->
+                <button class="btn btn-secondary" data-event="ViewContent" disabled>View Content</button>
+                <button class="btn btn-secondary" data-event="AddToWishlist" disabled>Add to Wishlist</button>
+                <button class="btn btn-secondary" data-event="AddToCart" disabled>Add To Cart</button>
+                <button class="btn btn-secondary" data-event="InitiateCheckout" disabled>Initiate Checkout</button>
+                <button class="btn btn-secondary" data-event="AddPaymentInfo" disabled>Add Payment Info</button>
+                <button class="btn btn-secondary" data-event="CompletePayment" disabled>Complete Payment</button>
+                <button class="btn btn-special" id="btn-send-all" disabled>Enviar Todos Eventos Padrões</button>
             </div>
         </div>
     </main>
