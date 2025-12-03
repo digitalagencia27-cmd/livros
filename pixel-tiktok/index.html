@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ferramenta para ativar e testar eventos do Pixel do TikTok. Valide sua configuração e garanta o rastreamento correto de conversões.">
+    <title>Ativar Pixel do TikTok | Ferramenta de Teste</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡️</text></svg>">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+      ttq.load('D4O2CQRC77UEBGID6LHG');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+</head>
+<body>
+
+    <main class="container">
+        <div class="card">
+            <h1>Ativar Pixel do TikTok</h1>
+            <p class="subtitle">Teste e valide o rastreamento de eventos em tempo real.</p>
+            
+            <div class="input-group">
+                <label for="pixel-id">Seu Pixel ID</label>
+                <input type="text" id="pixel-id" value="D4O2CQRC77UEBGID6LHG" readonly>
+            </div>
+
+            <div class="buttons-grid">
+                <!-- O atributo data-event é crucial para o JavaScript -->
+                <button class="btn btn-primary" data-event="ActivatePixel">Ativar Pixel</button>
+                <button class="btn btn-secondary" data-event="AddToCart">Add To Cart</button>
+                <button class="btn btn-secondary" data-event="InitiateCheckout">Initiate Checkout</button>
+                <button class="btn btn-secondary" data-event="AddPaymentInfo">Add Payment Info</button>
+                <button class="btn btn-secondary" data-event="CompletePayment">Complete Payment</button>
+                <button class="btn btn-special" id="btn-send-all">Enviar Todos Eventos Padrões</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
